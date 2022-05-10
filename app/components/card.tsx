@@ -1,7 +1,13 @@
 import moment from 'moment';
 
-const Card = (props: any) => {
-    if(Object.keys(props).length > 0){
+export type CardProps = {
+  title: string
+  point: string
+  author: string
+  time: number
+}
+
+const Card = (props: CardProps) => {
         return (
             <section className="text-gray-600 body-font overflow-hidden">
               <div className="py-2 mx-auto">
@@ -20,9 +26,7 @@ const Card = (props: any) => {
               </div>
             </section>
           );
-    }else{
-        return(<></>)
-    }
+    
  
 };
 

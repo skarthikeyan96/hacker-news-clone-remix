@@ -1,6 +1,13 @@
 import { useLoaderData } from "@remix-run/react";
-import Card from "~/components/card";
+import Card, { CardProps } from "~/components/card";
 import Layout from "~/components/layout";
+
+interface CardDataProps extends CardProps{
+  url: string
+  score: string
+  by: string
+}
+
 
 export async function loader() {
   const response = await fetch(
@@ -29,7 +36,7 @@ export default function Index() {
   return (
     <Layout>
       {data &&
-        data.map((d: any) => {
+        data.map((d:CardDataProps) => {
           if (d.url) {
             return (
               <a href={d.url} target="_blank" rel="noopener noreferrer" >
@@ -43,8 +50,7 @@ export default function Index() {
             );
           }
           <Card title={d.title} point={d.score} time={d.time} author={d.by} />;
-        })}
-      <Card />
+        })} 
     </Layout>
   );
 }
